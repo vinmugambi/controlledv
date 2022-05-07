@@ -22,22 +22,26 @@
       //       })
       //       .catch((err) => console.log(err));
       //   });
-
+      let data = {
+        apiKey: "fd29a4ddf9236b1aeb3f7f19382f454b",
+        userId: "626a480373aa3d0046c55126",
+        name: "On Writing Well",
+      };
       (async function () {
         try {
-          let res = await fetch("https://api.remnote.com/api/v0/get", {
+          let res = await fetch("https://api.remnote.com/api/v0/get_by_name", {
             method: "POST",
-            body: {
-              apiKey: "fd29a4ddf9236b1aeb3f7f19382f454b",
-              userId: "626a480373aa3d0046c55126",
-              name: "On Writing Well",
+            headers: {
+              "Content-Type": "application/json",
             },
+            body: JSON.stringify(data),
           });
 
           if (!res.ok) {
             throw new Error(res.type);
           }
           let note = await res.json();
+          console.log(note);
         } catch (err) {
           console.log(err);
         }
