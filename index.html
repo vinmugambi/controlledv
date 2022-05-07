@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ControlledV - Paste as one block</title>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/gh/remnoteio/remnote-api@latest/RemNoteAPI.js"></script>
+
+    <script>
+      //   window.addEventListener("DOMContentLoaded", (event) => {
+      //     RemNoteAPI.v0
+      //       .makeAPICall("get_by_name", {
+      //         apiKey: "fd29a4ddf9236b1aeb3f7f19382f454b",
+      //         userId: "626a480373aa3d0046c55126",
+      //         name: "On Writing Well",
+      //       })
+      //       .then(function (res) {
+      //         console.log(res);
+      //       })
+      //       .catch((err) => console.log(err));
+      //   });
+
+      (async function () {
+        try {
+          let res = await fetch("https://api.remnote.com/api/v0/get", {
+            method: "POST",
+            body: {
+              apiKey: "fd29a4ddf9236b1aeb3f7f19382f454b",
+              userId: "626a480373aa3d0046c55126",
+              name: "On Writing Well",
+            },
+          });
+
+          if (!res.ok) {
+            throw new Error(res.type);
+          }
+          let note = await res.json();
+        } catch (err) {
+          console.log(err);
+        }
+      })();
+    </script>
+  </body>
+</html>
