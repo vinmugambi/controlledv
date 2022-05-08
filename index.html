@@ -8,27 +8,12 @@
   </head>
   <body>
     <script src="https://cdn.jsdelivr.net/gh/remnoteio/remnote-api@latest/RemNoteAPI.js"></script>
-
+    <script src="./config.js"></script>
     <script>
-      //   window.addEventListener("DOMContentLoaded", (event) => {
-      //     RemNoteAPI.v0
-      //       .makeAPICall("get_by_name", {
-      //         apiKey: "fd29a4ddf9236b1aeb3f7f19382f454b",
-      //         userId: "626a480373aa3d0046c55126",
-      //         name: "On Writing Well",
-      //       })
-      //       .then(function (res) {
-      //         console.log(res);
-      //       })
-      //       .catch((err) => console.log(err));
-      //   });
-      let data = {
-        apiKey: "fd29a4ddf9236b1aeb3f7f19382f454b",
-        userId: "626a480373aa3d0046c55126",
-        name: "On Writing Well",
-      };
       (async function () {
         try {
+          let remnoteAuth = await getRemNoteAuth();
+          let data = { ...remnoteAuth, name: "On Writing Well" };
           let res = await fetch("https://api.remnote.com/api/v0/get_by_name", {
             method: "POST",
             headers: {
