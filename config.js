@@ -19,6 +19,6 @@ function enrichApiKeys(envVariables) {
 }
 
 async function getRemNoteAuth() {
-  let envVariables = await loadEnvFile("./config.json");
+  let envVariables = await loadEnvFile("./secrets.json");
   return enrichApiKeys(envVariables);
 }
