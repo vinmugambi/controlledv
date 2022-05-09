@@ -9,7 +9,8 @@ document.addEventListener("paste", async (event) => {
   const selection = window.getSelection();
   if (!selection.rangeCount) return false;
   selection.deleteFromDocument();
-  let rem = await getCurrentDocument();
-  await RemNoteAPI.v0.create(paste, rem.remId);
+  console.log(paste);
+//   let rem = await getCurrentDocument();
+//   await RemNoteAPI.v0.create(paste, rem.remId);
   event.preventDefault();
 });
