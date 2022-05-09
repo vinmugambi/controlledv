@@ -1,0 +1,15 @@
+async function getCurrentDocument() {
+  return await RemNoteAPI.v0.get_context();
+}
+
+document.addEventListener("paste", async (event) => {
+  let paste = (event.clipboardData || window.clipboardData).getData("text");
+  paste = paste.toUpperCase();
+
+  const selection = window.getSelection();
+  if (!selection.rangeCount) return false;
+  selection.deleteFromDocument();
+  let rem = await getCurrentDocument();
+  await RemNoteAPI.v0.create(paste, rem.remId);
+  event.preventDefault();
+});

@@ -7,92 +7,10 @@
     <title>ControlledV - Paste as one block</title>
   </head>
   <body>
-    <div class="undefined rich-text-editor" data-testid="RichTextEditor">
-      <div
-        data-gramm="false"
-        role="textbox"
-        dir="ltr"
-        class="EditorContainer"
-        data-slate-editor="true"
-        data-slate-node="value"
-        style="
-          outline: currentcolor none medium;
-          white-space: pre-wrap;
-          overflow-wrap: break-word;
-        "
-        contenteditable="true"
-      >
-        <div data-slate-node="element">
-          <span data-slate-node="text"
-            ><span data-slate-leaf="true" class=""
-              ><span data-slate-string="true"
-                >When you use a quotation, start the sentence with it. Don't
-                lead up to it with a vapid phrase saying what the man said. BAD:
-                Mr. Smith said that he liked to "go downtown once a week and
-                have lunch with some of my old friends." GOOD: "I usually like
-                to go downtown once a week," Mr. Smith said, "and have lunch
-                with some of my old friends." Json representing this Rem's
-                descendants. Each line will create a new bullet. Should have
-                type DescendantTree[]. ``` interface DescendantTree { text:
-                string; children: DescendantTree[]; } ```</span
-              ></span
-            ></span
-          >
-        </div>
-      </div>
-      <span class="" contenteditable="false"
-        ><span class="absolute top-0 h-full"></span
-      ></span>
-    </div>
-
-    <button onclick="createRem()">create rem</button>
+    <!-- <button onclick="createRem()">create rem</button> -->
     <script src="https://cdn.jsdelivr.net/gh/remnoteio/remnote-api@latest/RemNoteAPI.js"></script>
-    <script src="./config.js"></script>
-    <script>
-      let parentId = "";
-      (async function () {
-        try {
-          let remnoteAuth = await getRemNoteAuth();
-          let data = { ...remnoteAuth, name: "On Writing Well" };
-          let res = await fetch("https://api.remnote.com/api/v0/get_by_name", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-          });
-
-          if (!res.ok) {
-            throw new Error(res.type);
-          }
-          let note = await res.json();
-          parentId = note._id;
-        } catch (err) {
-          console.log(err);
-        }
-      })();
-
-      async function createRem() {
-        let remnoteAuth = await getRemNoteAuth();
-        let data = {
-          ...remnoteAuth,
-          parentId,
-          text: `my new 
-          rem`,
-        };
-        let res = await fetch("https://api.remnote.com/api/v0/create", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
-
-        if (!res.ok) {
-          throw new Error(res.type);
-        }
-        let note = await res.json();
-      }
-    </script>
+    <!-- <script src="./config.js"></script> -->
+    <!-- <script src="./backend-api.js"></script> -->
+    <script src="./index.js"></script>
   </body>
 </html>
